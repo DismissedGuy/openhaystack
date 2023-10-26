@@ -1,9 +1,4 @@
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-
-name: Dart
+name: Mobile app build
 
 on:
   push:
@@ -33,4 +28,19 @@ jobs:
           flutter-version: '3.7.7'
           channel: 'stable'
 
-      - run: flutter doctor
+      - name: Show toolchain versions
+        run: flutter --version && flutter doctor
+
+      - name: Download dependencies
+        run: |
+          cd openhaystack/openhaystack-mobile/
+          flutter precache
+          flutter pub get
+
+      - name: Build
+        run: |
+          flutter pub run flutter_launcher_icons:main
+          flutter build apk
+
+          ls build/
+          
