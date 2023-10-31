@@ -39,6 +39,13 @@ class _PreferencesPageState extends State<PreferencesPage> {
                       }
                     },
                   ),
+                  new Expanded(
+                    flex: 3,
+                    child: new TextField(
+                      textAlign: TextAlign.end,
+                      decoration: new InputDecoration.collapsed(hintText: 'https://proxy.goes/here')
+                    )
+                  ),
                   ListTile(
                     title: TextButton(
                       child: const Text('About'),
